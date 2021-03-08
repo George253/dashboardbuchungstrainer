@@ -33,6 +33,27 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
+import Header from './Header'
+
+
+
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import HelpIcon from '@material-ui/icons/Help';
+import Hidden from '@material-ui/core/Hidden';
+
+import Link from '@material-ui/core/Link';
+
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import Tab from '@material-ui/core/Tab';
+import Tabs from '@material-ui/core/Tabs';
+
+import Tooltip from '@material-ui/core/Tooltip';
+import { lightGreen } from '@material-ui/core/colors';
+
+
+
 
 const categories = [
   {
@@ -57,6 +78,8 @@ const categories = [
 ];
 
 const drawerWidth = 240;
+
+const lightColor = 'rgba(255, 255, 255, 0.7)';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -123,6 +146,25 @@ const useStyles = makeStyles((theme) => ({
 
 
 const styles = (theme) => ({
+  secondaryBar: {
+    zIndex: 0,
+  },
+  menuButton: {
+    marginLeft: -theme.spacing(1),
+  },
+  iconButtonAvatar: {
+    padding: 4,
+  },
+  link: {
+    textDecoration: 'none',
+    color: lightGreen,
+    '&:hover': {
+      color: theme.palette.common.white,
+    },
+  },
+  button: {
+    borderColor: lightColor,
+  },
   categoryHeader: {
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
@@ -164,7 +206,6 @@ const styles = (theme) => ({
 });
 
 
-
 function Navigator(props) {
 
   const classes = useStyles();
@@ -179,6 +220,7 @@ function Navigator(props) {
     setOpen(false);
   };
 
+
   //const { classes, ...other } = props;
 
   return (
@@ -190,7 +232,9 @@ function Navigator(props) {
           [classes.appBarShift]: open,
         })}
       >
+
         <Toolbar>
+
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -205,6 +249,40 @@ function Navigator(props) {
           <Typography variant="h6" noWrap>
             Mini variant drawer
           </Typography>
+
+
+          <Grid container spacing={1} alignItems="center">
+            <Hidden smUp>
+              <Grid item>
+                <IconButton
+                  color="inherit"
+                  aria-label="open drawer"
+                  className={classes.menuButton}
+                >
+                  <MenuIcon />
+                </IconButton>
+              </Grid>
+            </Hidden>
+            <Grid item xs />
+            <Grid item>
+              <Link className={classes.link} href="#" variant="body2">
+                Go to docs
+              </Link>
+            </Grid>
+            <Grid item>
+              <Tooltip title="Alerts • No alerts">
+                <IconButton color="inherit">
+                  <NotificationsIcon />
+                </IconButton>
+              </Tooltip>
+            </Grid>
+            <Grid item>
+              <IconButton color="inherit" className={classes.iconButtonAvatar}>
+                <Avatar src="/static/images/avatar/1.jpg" alt="My Avatar" />
+              </IconButton>
+            </Grid>
+          </Grid>
+
         </Toolbar>
       </AppBar>
       <Drawer
@@ -235,14 +313,7 @@ function Navigator(props) {
           ))}
         </List>
         <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+
       </Drawer>
 
     </div>

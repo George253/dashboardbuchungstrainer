@@ -181,8 +181,10 @@ function Paperbase(props) {
           onClose={handleDrawerToggle}
         />
 
+
+
         <div className={classes.app}>
-          <Header onDrawerToggle={handleDrawerToggle} />
+          <Header />
           <main className={classes.main}>
             <Content />
           </main>

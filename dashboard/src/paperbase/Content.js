@@ -13,6 +13,12 @@ import { withStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import RefreshIcon from '@material-ui/icons/Refresh';
 
+import ReactDOM from 'react-dom'
+import Example from '../DragnDrop/example'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+
+
 const styles = (theme) => ({
   paper: {
     maxWidth: 936,
@@ -70,6 +76,11 @@ function Content(props) {
           </Grid>
         </Toolbar>
       </AppBar>
+
+      <DndProvider backend={HTML5Backend}>
+        <Example />
+      </DndProvider>
+
       <div className={classes.contentWrapper}>
         <Typography color="textSecondary" align="center">
           No users for this project yet
